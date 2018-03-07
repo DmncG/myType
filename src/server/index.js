@@ -1,8 +1,11 @@
 const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
-const PORT = process.env.PORT || 8080
+
 const app = express()
+const https = require('https')
+const httpsServer = https.createServer(app)
+const PORT = process.env.PORT || 8080
 module.exports = app
 
 const createApp = () => {
@@ -11,7 +14,6 @@ const createApp = () => {
   app.use(bodyParser.urlencoded({ extended: true }))
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '../..', 'public')))
-
   // sends index.html
   app.use('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../..', 'public/index.html'))

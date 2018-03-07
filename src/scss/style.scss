@@ -1,8 +1,19 @@
 @import "variables";
 @import "default";
 
+/*
+Resolutions guide for media queries/responsive design
+
+phone: 375 x 812 (iPhone X)
+phone: 2220 x 1080 (Samsung S8)
+tablet: 2048 x 1536 px ( iPad3, iPad4, iPad Air)
+laptop M: 1024 x 1600
+laptop L: 1440 x 1600
+Macbook Retina 13: 2560 x 1600
+*/
+
 p {
-    color: $color-text;
+    color: $text-default;
 }
 
 
@@ -79,3 +90,19 @@ SPINNER
 HOME COMPONENT
 **************
 */
+
+.home-component{
+  background-color: $bg-default;
+  width: 100vw;
+  height: 100vh;
+  font-family: $font-default;
+  font-weight: $font-weight-default;
+}
+
+.home-component-header{
+  margin: inherit;
+  padding: inherit;
+  font-family: inherit;
+  font-weight: font-weight-header;
+  font-size: 2em;
+}
