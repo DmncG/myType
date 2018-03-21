@@ -6,7 +6,10 @@ import IconButton from 'material-ui/IconButton'
 import {Menu} from '../components'
 const Navbar = props => {
   return (
-    <AppBar title="myType" iconElementRight={<Menu/>} iconElementLeft={<IconButton><ActionSearch/></IconButton>} style={{backgroundColor: '#000000'}} titleStyle={{textAlign: 'center'}}/>
+    <AppBar title="myType" iconElementRight={<Menu/>}
+      iconElementLeft={<IconButton><ActionSearch/></IconButton>}
+      style={{backgroundColor: '#000000'}}
+      titleStyle={{textAlign: 'center'}}/>
   )
 }
 
