@@ -1,13 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Routes, Navbar} from './components'
+import {Routes} from './components'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import './scss/style.scss'
 import registerSW from './registerSW.js'
+
 const App = () => (
-  <div>
-    <Navbar/>
+  <MuiThemeProvider>
     <Routes/>
-  </div>
+  </MuiThemeProvider>
 )
 
 ReactDOM.render(
@@ -16,3 +18,4 @@ ReactDOM.render(
 )
 
 registerSW()
+injectTapEventPlugin()

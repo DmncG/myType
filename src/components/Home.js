@@ -1,9 +1,10 @@
 import React from 'react'
-
+import {Navbar} from '../components'
 const Home = props => {
   return (
     <div className="home-component">
-      <p className="home-component-header">you have reached react home</p>
+      <Navbar/>
+      <p className="home-component-header">myType.</p>
     </div>
   )
 }
