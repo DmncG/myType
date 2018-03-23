@@ -2,7 +2,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  color: black; }
+  color: black;
+  background-color: #ffeb3b; }
 
 div {
   margin: 0;
@@ -91,7 +92,6 @@ HOME COMPONENT
 **************
 */
 .home-component {
-  background-color: #ffeb3b;
   width: 100vw;
   height: 100vh;
   font-family: "Montserrat", sans-serif;

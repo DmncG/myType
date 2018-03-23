@@ -6,25 +6,6 @@ import NavigationMenu from 'material-ui/svg-icons/navigation/menu'
 import Drawer from 'material-ui/Drawer'
 import {Link} from 'react-router-dom'
 
-/*
-
-const Menu = props => {
-  return (
-    <IconMenu
-      iconButtonElement={<IconButton><NavigationMenu color={'#ffffff'} />}/></IconButton>}
-      anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-      targetOrigin={{horizontal: 'right', vertical: 'top'}}>
-      <MenuItem><Link to='/home' style={{textDecoration: 'none', color: '#000000'}}>Home</Link></MenuItem>
-      <MenuItem primaryText="Saved Fonts" />
-      <MenuItem primaryText="Directory" />
-      <MenuItem primaryText="Search" />
-    </IconMenu>
-  )
-}
-export default Menu
-
-*/
-
 export default class Menu extends Component {
   constructor (props) {
     super(props)
@@ -47,9 +28,9 @@ export default class Menu extends Component {
         <NavigationMenu color={'#ffffff'} onClick={this.handleToggle} />
         <Drawer open={this.state.open} openSecondary={true} docked={false} onRequestChange={(open) => this.setState({open})}>
           <MenuItem><Link to='/home' style={{textDecoration: 'none', color: '#000000'}}>Home</Link></MenuItem>
-          <MenuItem primaryText="Projects" />
-          <MenuItem primaryText="Directory" />
-          <MenuItem primaryText="Search" />
+          <MenuItem><Link to='/directory' style={{textDecoration: 'none', color: '#000000'}}>Directory</Link></MenuItem>
+          <MenuItem><Link to='/projects' style={{textDecoration: 'none', color: '#000000'}}>Projects</Link></MenuItem>
+          <MenuItem><Link to='/search' style={{textDecoration: 'none', color: '#000000'}}>Search</Link></MenuItem>
         </Drawer>
       </div>
     )
