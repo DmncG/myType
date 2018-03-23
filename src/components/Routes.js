@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Route, Router} from 'react-router'
 import {Switch, Redirect} from 'react-router-dom'
-import {Home, PageNotFound, Font, Search} from '../components'
+import {Home, PageNotFound, Font, Search, Directory, Projects} from '../components'
 import history from './history'
 
 const Routes = props => {
@@ -12,6 +12,8 @@ const Routes = props => {
         <Route path="/home" component={Home} />
         <Route path="/font" component={Font} />
         <Route path="/search" component={Search} />
+        <Route path="/directory" component={Directory} />
+        <Route path="/projects" component={Projects} />
         <Route path="/error" component = {PageNotFound} />
         <Redirect to= "/error" component={PageNotFound} />
       </Switch>

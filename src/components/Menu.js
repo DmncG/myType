@@ -47,7 +47,7 @@ export default class Menu extends Component {
         <NavigationMenu color={'#ffffff'} onClick={this.handleToggle} />
         <Drawer open={this.state.open} openSecondary={true} docked={false} onRequestChange={(open) => this.setState({open})}>
           <MenuItem><Link to='/home' style={{textDecoration: 'none', color: '#000000'}}>Home</Link></MenuItem>
-          <MenuItem primaryText="Saved Fonts" />
+          <MenuItem primaryText="Projects" />
           <MenuItem primaryText="Directory" />
           <MenuItem primaryText="Search" />
         </Drawer>
