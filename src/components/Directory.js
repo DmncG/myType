@@ -3,6 +3,7 @@ import {Navbar} from '../components'
 import {connect} from 'react-redux'
 
 const Directory = props => {
+  console.log('props***', props)
   return (
     <div>
       <Navbar/>
@@ -12,7 +13,7 @@ const Directory = props => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('**mapstatepropsCampus', state)
+  console.log('**mapstatepropsFontList', state)
   return {
     fontList: state.fontList
   }
