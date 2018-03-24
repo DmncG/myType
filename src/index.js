@@ -9,11 +9,11 @@ import './scss/style.scss'
 import registerSW from './registerSW.js'
 
 const App = () => (
-  <Provider store={store}>
-    <MuiThemeProvider>
+  <MuiThemeProvider>
+    <Provider store={store}>
       <Routes/>
-    </MuiThemeProvider>
-  </Provider>
+    </Provider>
+  </MuiThemeProvider>
 )
 
 ReactDOM.render(
