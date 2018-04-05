@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 
 const Directory = (props) => {
   const {fontList} = props
-  console.log('thisisprops', fontList)
   return (
     <div>
       <Navbar/>
@@ -12,7 +11,12 @@ const Directory = (props) => {
       <ul>
         {
           fontList.items &&
-            fontList.items.map(font => {
+            fontList.items.map((font, i) => {
+              if (i > -1) {
+                return (
+                  <li key={font.family} style={{fontFamily: `${font.family}`}}>{font.family}</li>
+                )
+              }
               return (
                 <li key={font.family}>{font.family}</li>
               )
@@ -24,7 +28,6 @@ const Directory = (props) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('thisisstate', state)
   return {
     fontList: state.rootFontReducer.fontList
   }

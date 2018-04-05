@@ -1,28 +1,22 @@
 import axios from 'axios'
 import { googleAPIKey } from '../../secrets'
+import WebFont from 'webfontloader'
 
 // INITIAL STATE
 
 const initialState = {
   fetching: false,
   fetched: false,
-  fontList: {},
-  familyList: {}
+  fontList: {}
 }
 
 // ACTION TYPES
 
 export const GET_FONTS = 'GET_FONTS'
-export const GET_FAMILY = 'GET_FAMILY'
 // ACTION CREATORS
 
 export function getFonts (fontList) {
   const action = {type: GET_FONTS, fontList}
-  return action
-}
-
-export function getFamily (familyList) {
-  const action = {type: GET_FAMILY, familyList}
   return action
 }
 
@@ -33,13 +27,23 @@ export function fetchFonts () {
     return axios.get(`https://www.googleapis.com/webfonts/v1/webfonts?key=${googleAPIKey}`)
       .then(res => res.data)
       .then(fonts => {
-        const action = getFonts(fonts)
-        // const arrFam = fonts.items.map(font => {
-        //   return font.family
-        // })
-        // const action2 = getFamily(arrFam)
+        let fontFamilies = fonts.items.filter((font, i) => {
+          if (i > -1) {
+            return font
+          }
+        }).map(font => {
+          return font.family
+        })
+        WebFont.load({
+          google: {
+            families: fontFamilies
+          }
+        })
+        return fonts
+      })
+      .then(payload => {
+        const action = getFonts(payload)
         dispatch(action)
-        // dispatch(action2)
       })
       .catch(err => console.log(err))
   }
@@ -51,8 +55,6 @@ const rootFontReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_FONTS:
       return Object.assign({}, state, {fontList: action.fontList})
-    case GET_FAMILY:
-      return Object.assign({}, state, {familyList: action.familyList})
     default:
       return state
   }
