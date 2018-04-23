@@ -1,7 +1,6 @@
 const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
-
 const app = express()
 const https = require('https')
 const httpsServer = https.createServer(app)
@@ -9,7 +8,9 @@ const PORT = process.env.PORT || 8080
 module.exports = app
 
 const createApp = () => {
-// body parsing middleware
+  // create db
+  require('../db')
+  // body parsing middleware
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: true }))
   // static file-serving middleware

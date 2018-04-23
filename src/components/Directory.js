@@ -1,38 +1,46 @@
 import React, {Component} from 'react'
-import {Navbar} from '../components'
+import {Navbar, Spinner, PageNotFound} from '../components'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 const Directory = (props) => {
-  const {fontList} = props
+  const {fontList, fetching, fetched, erred} = props
+  console.log('fontList', fontList)
   return (
-    <div>
+    <div className='directory-div'>
       <Navbar/>
       <p>you have reached react directory</p>
-      <ul>
-        {
-          fontList.items &&
-            fontList.items.map((font, i) => {
-              if (i > -1) {
-                return (
-                  <li key={font.family} style={{fontFamily: `${font.family}`}}>{font.family}</li>
-                )
+      {
+        fetching && !fetched
+          ? <Spinner/>
+          : erred
+            ? <PageNotFound/>
+            : <ul style={{listStyleType: 'none'}} className="directory-ul">
+              { fontList.items &&
+                fontList.items.map((font, i) => {
+                  return (
+                    <li key={font.family} className="directory-li" style={{fontFamily: `${font.family}`, fontSize: '50px'}}>
+                      <Link to={`/font/${font.family}`} style={{textDecoration: 'none', color: '#000000'}}>{font.family}</Link>
+                    </li>
+                  )
+                })
               }
-              return (
-                <li key={font.family}>{font.family}</li>
-              )
-            })
-        }
-      </ul>
+            </ul>
+      }
     </div>
   )
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log('state***', state.rootFontReducer)
   return {
-    fontList: state.rootFontReducer.fontList
+    fontList: state.rootFontReducer.fontList,
+    fetching: state.rootStatusReducer.fetching,
+    fetched: state.rootStatusReducer.fetched,
+    erred: state.rootStatusReducer.erred
   }
 }
 
-const directoryContainer = connect(mapStateToProps)(Directory)
+const containerDirectory = connect(mapStateToProps)(Directory)
 
-export default directoryContainer
+export default containerDirectory

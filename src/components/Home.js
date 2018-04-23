@@ -1,12 +1,22 @@
 import React from 'react'
-import {Navbar} from '../components'
+import {Navbar, Spinner} from '../components'
+import {connect} from 'react-redux'
 const Home = props => {
+  const {fetched} = props
   return (
-    <div className="home-component">
-      <Navbar/>
-      <p className="home-component-header">myType.</p>
-    </div>
+    fetched
+      ? <div className="home">
+        <Navbar/>
+        <p className="home-header">myType.</p>
+      </div>
+      : <Spinner/>
   )
 }
 
-export default Home
+const mapStateToProps = (state, OwnProps) => {
+  return {
+    fetched: state.rootStatusReducer.fetched
+  }
+}
+const containerHome = connect(mapStateToProps)(Home)
+export default containerHome

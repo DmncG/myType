@@ -29,7 +29,7 @@ export default class Menu extends Component {
         <Drawer open={this.state.open} openSecondary={true} docked={false} onRequestChange={(open) => this.setState({open})}>
           <MenuItem><Link to='/home' style={{textDecoration: 'none', color: '#000000'}}>Home</Link></MenuItem>
           <MenuItem><Link to='/directory' style={{textDecoration: 'none', color: '#000000'}}>Directory</Link></MenuItem>
-          <MenuItem><Link to='/projects' style={{textDecoration: 'none', color: '#000000'}}>Projects</Link></MenuItem>
+          <MenuItem><Link to='/projects' style={{textDecoration: 'none', color: '#000000'}}>Projects *coming soon*</Link></MenuItem>
           <MenuItem><Link to='/search' style={{textDecoration: 'none', color: '#000000'}}>Search</Link></MenuItem>
         </Drawer>
       </div>

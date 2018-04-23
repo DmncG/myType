@@ -31,7 +31,7 @@ SPINNER
             transform: translate(-50%, -50%); 
     #spinner{
         box-sizing: border-box;
-        stroke: #673AB7;
+        stroke: black;
         stroke-width: 3px;
         -webkit-transform-origin: 50%;
         transform-origin: 50%;
@@ -91,17 +91,36 @@ HOME COMPONENT
 **************
 */
 
-.home-component{
+.home{
   width: 100vw;
   height: 100vh;
   font-family: $font-default;
   font-weight: $font-weight-default;
 }
 
-.home-component-header{
+.home-header{
   margin: inherit;
   padding: inherit;
   font-family: inherit;
-  font-weight: font-weight-header;
+  font-weight: $font-weight-header;
   font-size: 2em;
 }
+
+/*
+**************
+DIRECTORY COMPONENT
+**************
+*/
+
+
+.directory-ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.directory-li {
+  grid-column-start: 2; 
+  grid-column-end: 3;
+  align-self: center;
+}
+
