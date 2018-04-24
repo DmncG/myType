@@ -111,11 +111,16 @@ DIRECTORY COMPONENT
 */
 .directory-ul {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); }
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center; }
 
 .directory-li {
   grid-column-start: 2;
   grid-column-end: 3;
   align-self: center; }
+
+.directory-link {
+  text-decoration: none;
+  color: #000000; }
 
 /*# sourceMappingURL=style.css.map*/

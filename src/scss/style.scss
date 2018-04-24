@@ -116,6 +116,7 @@ DIRECTORY COMPONENT
 .directory-ul {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
 }
 
 .directory-li {
@@ -124,3 +125,7 @@ DIRECTORY COMPONENT
   align-self: center;
 }
 
+.directory-link {
+  text-decoration: none;
+  color: #000000;
+}

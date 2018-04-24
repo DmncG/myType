@@ -19,8 +19,8 @@ const Directory = (props) => {
               { fontList.items &&
                 fontList.items.map((font, i) => {
                   return (
-                    <li key={font.family} className="directory-li" style={{fontFamily: `${font.family}`, fontSize: '50px'}}>
-                      <Link to={`/font/${font.family}`} style={{textDecoration: 'none', color: '#000000'}}>{font.family}</Link>
+                    <li key={font.family} className="directory-li" style={{fontFamily: `${font.family}`, fontSize: '40px'}}>
+                      <Link to={`/font/${font.family}`} className="directory-link">{font.family}</Link>
                     </li>
                   )
                 })
