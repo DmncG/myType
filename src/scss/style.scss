@@ -133,6 +133,11 @@ NAVBAR COMPONENT
 #navbar-title{
   font-family: $font-default;
   font-weight: $font-weight-default;
+  font-size: 30px;
+
+  &:hover{
+    color: $bg-default !important;
+  }
 }
 
 #navbar-search{
@@ -140,9 +145,45 @@ NAVBAR COMPONENT
   height: 40px !important;
   position: relative;
   left: -5px;
-  top: -5px;
+  top: -9px;
+
+  &:hover{
+    fill: $bg-default !important;
+  }
 }
 
+/*
+**************
+MENU COMPONENT
+**************
+*/
+
+#menu-burger{
+  height: 35px !important;
+  width: 35px !important;
+  position: relative;
+  top: 5px;
+  
+  &:hover{
+    fill: $bg-default !important;
+  }
+}
+
+.menu-menuItem{
+  font-family: $font-default;
+  font-weight: $font-weight-header;
+}
+
+#menu-closeIcon{
+  height: 40px !important;
+  width: 40px !important;
+  position: relative;
+  left: 210px;
+
+  &:hover{
+    fill: $bg-default !important;
+  }
+}
 
 /*
 **************

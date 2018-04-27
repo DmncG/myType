@@ -128,14 +128,44 @@ NAVBAR COMPONENT
 */
 #navbar-title {
   font-family: "Montserrat", sans-serif;
-  font-weight: 400; }
+  font-weight: 400;
+  font-size: 30px; }
+  #navbar-title:hover {
+    color: #ffeb3b !important; }
 
 #navbar-search {
   width: 48px !important;
   height: 40px !important;
   position: relative;
   left: -5px;
-  top: -5px; }
+  top: -9px; }
+  #navbar-search:hover {
+    fill: #ffeb3b !important; }
+
+/*
+**************
+MENU COMPONENT
+**************
+*/
+#menu-burger {
+  height: 35px !important;
+  width: 35px !important;
+  position: relative;
+  top: 5px; }
+  #menu-burger:hover {
+    fill: #ffeb3b !important; }
+
+.menu-menuItem {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600; }
+
+#menu-closeIcon {
+  height: 40px !important;
+  width: 40px !important;
+  position: relative;
+  left: 210px; }
+  #menu-closeIcon:hover {
+    fill: #ffeb3b !important; }
 
 /*
 **************

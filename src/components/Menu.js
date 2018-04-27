@@ -5,6 +5,7 @@ import MenuItem from 'material-ui/MenuItem'
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu'
 import Drawer from 'material-ui/Drawer'
 import {Link} from 'react-router-dom'
+import NavigationClose from 'material-ui/svg-icons/navigation/close'
 
 export default class Menu extends Component {
   constructor (props) {
@@ -25,12 +26,13 @@ export default class Menu extends Component {
   render () {
     return (
       <div>
-        <NavigationMenu color={'#ffffff'} onClick={this.handleToggle} />
+        <NavigationMenu id="menu-burger" color={'#ffffff'} onClick={this.handleToggle} />
         <Drawer open={this.state.open} openSecondary={true} docked={false} onRequestChange={(open) => this.setState({open})}>
-          <MenuItem><Link to='/home' style={{textDecoration: 'none', color: '#000000'}}>Home</Link></MenuItem>
-          <MenuItem><Link to='/directory' style={{textDecoration: 'none', color: '#000000'}}>Directory</Link></MenuItem>
-          <MenuItem><Link to='/projects' style={{textDecoration: 'none', color: '#000000'}}>Projects *coming soon*</Link></MenuItem>
-          <MenuItem><Link to='/search' style={{textDecoration: 'none', color: '#000000'}}>Search</Link></MenuItem>
+          <NavigationClose id="menu-closeIcon" onClick={this.handleToggle}/>
+          <MenuItem><Link to='/home' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Home</Link></MenuItem>
+          <MenuItem><Link to='/directory' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Directory</Link></MenuItem>
+          <MenuItem><Link to='/projects' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Projects *coming soon*</Link></MenuItem>
+          <MenuItem><Link to='/search' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Search</Link></MenuItem>
         </Drawer>
       </div>
     )
