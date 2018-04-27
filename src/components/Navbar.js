@@ -8,10 +8,13 @@ import {Link} from 'react-router-dom'
 
 const Navbar = props => {
   return (
-    <AppBar title={<Link to='/home' style={{textDecoration: 'none', color: '#ffffff'}}>myType.</Link>} iconElementRight={<Menu/>}
-      iconElementLeft={<IconButton><ActionSearch/></IconButton>}
-      style={{backgroundColor: '#000000'}}
-      titleStyle={{textAlign: 'center'}}/>
+    <AppBar title={<Link to='/home'
+      id="navbar-title"
+      style={{textDecoration: 'none', color: '#ffffff'}}>
+      myType.</Link>} iconElementRight={<Menu/>}
+    iconElementLeft={<IconButton><ActionSearch id="navbar-search"/></IconButton>}
+    style={{backgroundColor: '#000000'}}
+    titleStyle={{textAlign: 'center'}}/>
   )
 }
 

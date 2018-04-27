@@ -122,7 +122,26 @@ HOME COMPONENT
   z-index: 1;
   transform: translate(-50%, -130%);
   -webkit-transform: translate(-50%, -130%);
-}        
+}
+
+/*
+**************
+NAVBAR COMPONENT
+**************
+*/
+
+#navbar-title{
+  font-family: $font-default;
+  font-weight: $font-weight-default;
+}
+
+#navbar-search{
+  width: 48px !important;
+  height: 40px !important;
+  position: relative;
+  left: -5px;
+  top: -5px;
+}
 
 
 /*

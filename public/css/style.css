@@ -123,6 +123,22 @@ HOME COMPONENT
 
 /*
 **************
+NAVBAR COMPONENT
+**************
+*/
+#navbar-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400; }
+
+#navbar-search {
+  width: 48px !important;
+  height: 40px !important;
+  position: relative;
+  left: -5px;
+  top: -5px; }
+
+/*
+**************
 DIRECTORY COMPONENT
 **************
 */
