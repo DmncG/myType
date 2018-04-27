@@ -5,11 +5,9 @@ import {Link} from 'react-router-dom'
 
 const Directory = (props) => {
   const {fontList, fetching, fetched, erred} = props
-  console.log('fontList', fontList)
   return (
     <div className='directory-div'>
       <Navbar/>
-      <p>you have reached react directory</p>
       {
         fetching && !fetched
           ? <Spinner/>
@@ -19,7 +17,7 @@ const Directory = (props) => {
               { fontList.items &&
                 fontList.items.map((font, i) => {
                   return (
-                    <li key={font.family} className="directory-li" style={{fontFamily: `${font.family}`, fontSize: '40px'}}>
+                    <li key={font.family} className="directory-li" style={{fontFamily: `${font.family}`}}>
                       <Link to={`/font/${font.family}`} className="directory-link">{font.family}</Link>
                     </li>
                   )
@@ -32,7 +30,6 @@ const Directory = (props) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('state***', state.rootFontReducer)
   return {
     fontList: state.rootFontReducer.fontList,
     fetching: state.rootStatusReducer.fetching,
