@@ -97,12 +97,29 @@ HOME COMPONENT
   font-family: "Montserrat", sans-serif;
   font-weight: 400; }
 
-.home-header {
+#home-header {
   margin: inherit;
   padding: inherit;
   font-family: inherit;
   font-weight: 600;
-  font-size: 2em; }
+  font-size: 3em;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%); }
+
+#home-headerBorder {
+  height: 20px;
+  width: 200px;
+  position: fixed;
+  left: 50%;
+  top: 54.5%;
+  background-color: #000000;
+  opacity: .2;
+  z-index: 1;
+  transform: translate(-50%, -130%);
+  -webkit-transform: translate(-50%, -130%); }
 
 /*
 **************
@@ -118,9 +135,43 @@ DIRECTORY COMPONENT
   grid-column-start: 2;
   grid-column-end: 3;
   align-self: center; }
+  .directory-li:hover {
+    opacity: .50; }
 
 .directory-link {
   text-decoration: none;
   color: #000000; }
+
+/*
+**************
+FONT COMPONENT
+**************
+*/
+.font-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center; }
+
+.font-glyph {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  font-size: 200px;
+  padding: 0em .5em 0em .5em;
+  margin: 0em .5em 0em .5em;
+  text-align: center; }
+
+.font-fam {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  text-align: center;
+  padding: 0em .5em 0em .5em;
+  margin: 0em .5em 0em .5em;
+  font-size: 100px; }
+
+.font-add {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  width: 50px;
+  height: 50px; }
 
 /*# sourceMappingURL=style.css.map*/

@@ -2,12 +2,11 @@ import React, {Component} from 'react'
 import {Navbar} from '../components'
 import {connect} from 'react-redux'
 import { fetchFont } from '../reducers/fonts'
+import ContentAddCircle from 'material-ui/svg-icons/content/add-circle'
 
 class Font extends Component {
   componentDidMount () {
-    console.log('props in lifecycle', this.props)
     let params = this.props.match.params.family
-    console.log('hit lifecycle')
     this.props.fetchFont(params)
   }
 
@@ -15,8 +14,18 @@ class Font extends Component {
     return (
       <div>
         <Navbar/>
-        <p>you have reached the font:</p>
-        <p style={{fontFamily: `${this.props.font}`}}> {`${this.props.font}`} </p>
+        {
+          this.props.font[0] &&
+          <div className="font-content">
+            <ContentAddCircle className="font-add"/>
+            <p className="font-glyph" style={{fontFamily: `${this.props.font}`}}>
+              {`${this.props.font[0].toUpperCase()}${this.props.font[0].toLowerCase()}`}
+            </p>
+            <p className="font-fam" style={{fontFamily: `${this.props.font}`}}>
+              {`${this.props.font}`}
+            </p>
+          </div>
+        }
       </div>
     )
   }

@@ -44,13 +44,11 @@ export function fetchFonts () {
       .then(payload => {
         WebFont.load({
           loading: () => dispatch(isFetching()),
+          active: () => dispatch(isFetched()),
           google: {
             families: payload
           }
         })
-      })
-      .then(() => {
-        return setTimeout(() => dispatch(isFetched()), 6000)
       })
       .catch(err => {
         console.log(err)

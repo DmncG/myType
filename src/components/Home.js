@@ -7,7 +7,8 @@ const Home = props => {
     fetched
       ? <div className="home">
         <Navbar/>
-        <p className="home-header">myType.</p>
+        <p id="home-header">myType.</p>
+        <div id="home-headerBorder"></div>
       </div>
       : <Spinner/>
   )
