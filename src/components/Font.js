@@ -3,6 +3,7 @@ import {Navbar} from '../components'
 import {connect} from 'react-redux'
 import { fetchFont } from '../reducers/fonts'
 import ContentAddCircle from 'material-ui/svg-icons/content/add-circle'
+import ActionFavorite from 'material-ui/svg-icons/action/favorite'
 
 class Font extends Component {
   componentDidMount () {
@@ -14,16 +15,18 @@ class Font extends Component {
     return (
       <div>
         <Navbar/>
+        <ContentAddCircle className="font-add"/>
+        <ActionFavorite className="font-favorite"/>
         {
           this.props.font[0] &&
           <div className="font-content">
-            <ContentAddCircle className="font-add"/>
             <p className="font-glyph" style={{fontFamily: `${this.props.font}`}}>
               {`${this.props.font[0].toUpperCase()}${this.props.font[0].toLowerCase()}`}
             </p>
             <p className="font-fam" style={{fontFamily: `${this.props.font}`}}>
               {`${this.props.font}`}
             </p>
+            <div id="font-headerLine"></div>
           </div>
         }
       </div>
@@ -32,7 +35,6 @@ class Font extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('fontListFont', state.rootFontReducer.fontList)
   return {
     fontList: state.rootFontReducer.fontList,
     font: state.rootFontReducer.font
@@ -40,7 +42,6 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log('ownProps****HEY', ownProps)
   return {
     fetchFont: (params) => dispatch(fetchFont(params))
   }

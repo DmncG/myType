@@ -13,17 +13,21 @@ const Directory = (props) => {
           ? <Spinner/>
           : erred
             ? <PageNotFound/>
-            : <ul style={{listStyleType: 'none'}} className="directory-ul">
-              { fontList.items &&
-                fontList.items.map((font, i) => {
-                  return (
-                    <li key={font.family} className="directory-li" style={{fontFamily: `${font.family}`}}>
-                      <Link to={`/font/${font.family}`} className="directory-link">{font.family}</Link>
-                    </li>
-                  )
-                })
-              }
-            </ul>
+            : <div>
+              <p id="directory-header">Directory</p>
+              <div id="directory-headerLine"></div>
+              <ul style={{listStyleType: 'none'}} className="directory-ul">
+                { fontList.items &&
+                  fontList.items.map((font, i) => {
+                    return (
+                      <li key={font.family} className="directory-li" style={{fontFamily: `${font.family}`}}>
+                        <Link to={`/font/${font.family}`} className="directory-link">{font.family}</Link>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
       }
     </div>
   )
