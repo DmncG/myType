@@ -134,6 +134,9 @@ HOME COMPONENT
 NAVBAR COMPONENT
 **************
 */
+.navbar-main {
+  position: fixed !important; }
+
 #navbar-title {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -185,8 +188,8 @@ DIRECTORY COMPONENT
   color: #000000;
   text-align: center;
   display: block;
-  padding: 5px;
-  margin: 5px;
+  padding: 100px 5px 5px 5px;
+  margin: 0;
   font-family: "Montserrat", sans-serif;
   font-weight: 400; }
 
@@ -226,7 +229,9 @@ FONT COMPONENT
 .font-content {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto; }
+  grid-template-rows: auto;
+  padding: 100px 5px 5px 5px;
+  margin: 0px 5px 5px 5px; }
 
 .font-glyph {
   font-size: 100px;
@@ -246,9 +251,9 @@ FONT COMPONENT
   width: 50px !important;
   height: 50px !important;
   margin-left: 5px;
-  margin-top: 5px;
+  margin-top: 40px;
   padding-left: 5px;
-  padding-top: 5px;
+  padding-top: 40px;
   opacity: .7;
   transition: all ease-in-out .5s;
   position: fixed;
@@ -260,9 +265,9 @@ FONT COMPONENT
   width: 50px !important;
   height: 50px !important;
   margin-left: 5px;
-  margin-top: 35px;
+  margin-top: 70px;
   padding-left: 5px;
-  padding-top: 35px;
+  padding-top: 70px;
   opacity: .7;
   transition: all ease-in-out .5s;
   position: fixed;
@@ -270,12 +275,49 @@ FONT COMPONENT
   .font-favorite:hover {
     opacity: 1; }
 
-#font-headerLine {
+.font-headerLine {
   width: 100px;
+  height: 2px;
+  background-color: #000000;
+  margin: auto;
+  position: relative;
+  top: 30px;
+  display: block; }
+
+.font-details-headerLine {
+  width: 50px;
   height: 2px;
   background-color: #000000;
   justify-self: center;
   position: relative;
-  top: 30px; }
+  top: 100px;
+  display: block; }
+
+#font-details-header {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  text-align: center;
+  font-size: 25px;
+  display: block;
+  padding: 0 5px 0 5px;
+  margin: 0 5px 0 5px;
+  position: relative;
+  top: 60px; }
+
+.font-details {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  text-align: center;
+  font-size: 12.5px;
+  display: block;
+  padding: 0 5px 0 5px;
+  margin: 0 5px 0 5px;
+  position: relative; }
+
+#font-details-category {
+  top: 120px; }
+
+#font-details-style {
+  top: 180px; }
 
 /*# sourceMappingURL=style.css.map*/

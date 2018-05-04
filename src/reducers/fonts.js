@@ -6,7 +6,7 @@ import {isFetching, isFetched, isErred} from './status'
 
 const initialState = {
   fontList: {},
-  font: {}
+  font: ''
 }
 
 // ACTION TYPES
@@ -45,6 +45,8 @@ export function fetchFonts () {
         WebFont.load({
           loading: () => dispatch(isFetching()),
           active: () => dispatch(isFetched()),
+          inactive: () => dispatch(isErred()),
+          timeout: 10000,
           google: {
             families: payload
           }
