@@ -245,30 +245,6 @@ FONT COMPONENT
 **************
 */
 
-.font-content {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  padding: 100px 5px 5px 5px;
-  margin: 0px 5px 5px 5px;
-}
-
-.font-glyph{
-  font-size: 100px;
-  text-align: center;
-  display: block;
-  padding: 0 5px 0 5px;
-  margin: 0 5px 0 5px;
-}
-
-.font-fam{
-  text-align: center;
-  font-size: 25px;
-  display: block;
-  padding: 0 5px 0 5px;
-  margin: 0 5px 0 5px;
-}
-
 .font-add{
   width: 50px !important;
   height: 50px !important;
@@ -303,13 +279,34 @@ FONT COMPONENT
   }
 }
 
+.font-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  padding: 100px 10px 10px 10px;
+  margin: 0px 10px 10px 10px;
+  grid-row-gap: 20px;
+}
+
+.font-glyph{
+  font-size: 100px;
+  display: block;
+  padding: 0px 5px 0px 5px;
+  margin: auto;
+}
+
+.font-fam{
+  font-size: 25px;
+  display: block;
+  padding: 0 5px 0 5px;
+  margin: auto;
+}
+
 .font-headerLine{
   width: 100px;
   height: 2px;
   background-color: #000000;
   margin: auto;
-  position: relative;
-  top: 30px;
   display: block;
 
 }
@@ -318,46 +315,69 @@ FONT COMPONENT
   width: 50px;
   height: 2px;
   background-color: #000000;
-  justify-self: center;
-  position: relative;
-  top: 100px;
+  margin: auto;
   display: block;
+
 }
 
 #font-details-header{
   font-family: $font-default;
   font-weight: $font-weight-header;
-  text-align: center;
   font-size: 25px;
   display: block;
   padding: 0 5px 0 5px;
-  margin: 0 5px 0 5px;
-  position: relative;
-  top: 60px;
+  margin: auto;
 }
 
-.font-details{
+.font-categories{
+  margin: auto;
+  font-size: 16.5px;
   font-family: $font-default;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-row-gap: 15px;
+}
+
+#font-category-header{
+  font-size: inherit;
+  font-family: inherit;
   font-weight: $font-weight-header;
-  text-align: center;
-  font-size: 12.5px;
   display: block;
   padding: 0 5px 0 5px;
-  margin: 0 5px 0 5px;
-  position: relative;
+  margin: inherit;
 }
 
-#font-details-category{
-  top: 120px;
-}
-.font-category{
-
-}
-
-#font-details-style{
-  top: 180px;
+.font-category-item{
+  margin: inherit;
+  display: block;
+  padding: 0 5px 0 5px;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: $font-weight-default;
 }
 
-.font-variant{
+.font-styles{
+  margin: auto;
+}
 
+.font-preview{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.font-textfield{
+  grid-column-start: 1 !important;
+  grid-column-end: 4 !important;
+}
+
+.font-slider-size{
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.font-slider{
+  width: 100px !important;
+  grid-column-start: 2 !important;
+  grid-column-end: 4 !important;
 }
