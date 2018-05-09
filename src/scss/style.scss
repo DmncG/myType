@@ -363,21 +363,36 @@ FONT COMPONENT
 
 .font-preview{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: .3fr 1fr;
+  grid-row-gap: 5px;
 }
 
-.font-textfield{
-  grid-column-start: 1 !important;
-  grid-column-end: 4 !important;
+.font-slider-items{
+  display: grid;
+  grid-template-columns: .5fr 1fr
 }
 
 .font-slider-size{
   grid-column-start: 1;
   grid-column-end: 2;
+  font-family: $font-default;
+  font-weight: $font-weight-default;
 }
 .font-slider{
+  grid-column-start: 2;
+  grid-column-end: 3; 
   width: 100px !important;
-  grid-column-start: 2 !important;
-  grid-column-end: 4 !important;
+}
+
+.font-textarea{
+  height: 160px;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+
 }
