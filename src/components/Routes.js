@@ -3,13 +3,16 @@ import {Route, Router} from 'react-router'
 import {Switch, Redirect} from 'react-router-dom'
 import {Home, PageNotFound, Font, Search, Directory, Favorites} from '../components'
 import {fetchFonts} from '../reducers/fonts'
+import {fetchFavorites} from '../reducers/favorites'
 import history from './history'
 import store from '../store'
 
 export default class Routes extends Component {
   componentDidMount () {
     const fontThunk = fetchFonts()
+    const favesThunk = fetchFavorites()
     store.dispatch(fontThunk)
+    store.dispatch(favesThunk)
   }
 
   render () {

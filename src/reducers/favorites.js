@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {allFavorites} from '../aws-ops'
+import {allFavorites, putOneFavorite} from '../aws-ops'
 import { isFetching, isFetched, isErred } from './status'
 
 // INITIAL STATE
@@ -60,24 +60,20 @@ export function fetchFavorites () {
 
 export function fetchOneFavorite () {
   return function thunk (dispatch) {
-    return axios.get('/api/projects/:projectID')
-      .then(res => res.data)
-      .then(project => {
-        const action = getOneFavorite(project)
-        dispatch(action)
-      })
-      .catch(err => console.error(err))
+
   }
 }
 
 export function putFavorite (favoriteName) {
   return function thunk (dispatch) {
-    return axios.post('/api/projects/add')
-      .then(res => res.data)
-      .then(project => {
-        const action = addFavorite(project)
+    putOneFavorite(favoriteName)
+      .then(res => {
+        let action = addFavorite(favoriteName)
+        console.log('res', res)
+        console.log('thunk favorite reached')
         dispatch(action)
       })
+      .catch(err => console.log(err))
   }
 }
 
@@ -101,7 +97,7 @@ const rootFavoritesReducer = (state = initialState, action) => {
     case GET_ONEFAVORITE:
       return Object.assign({}, state, {currentProject: action.project})
     case ADD_FAVORITE:
-      return Object.assign({}, state, {projectList: [...state.projectList, action.project]})
+      return Object.assign({}, state, {favoritesList: [...state.favoritesList, action.favorite]})
     case DELETE_FAVORITE:
       return Object.assign({}, state, {projectList: state.projectList.filter(proj => {
         if (proj !== action.project) {

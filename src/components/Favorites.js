@@ -15,7 +15,8 @@ class Favorites extends Component {
     return (
       <div>
         <Navbar/>
-        <p>you have reached react favorites</p>
+        <p id='favorites-header'>Favorites</p>
+        <div id='favorites-headerLine'></div>
         <FavoritesList/>
       </div>
     )

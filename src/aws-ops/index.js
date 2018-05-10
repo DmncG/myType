@@ -7,21 +7,6 @@ AWS.config.update({
   secretAccessKey: 'fakeSecretAccessKey'
 })
 
-export function allProjects () {
-  return new Promise(resolve => {
-    let docClient = new AWS.DynamoDB.DocumentClient()
-    let params = {
-      TableName: 'Projects'
-    }
-    docClient.scan(params, (err, data) => {
-      if (err) console.error(err)
-      else {
-        resolve(data.Items)
-      }
-    })
-  })
-}
-
 export function allFavorites () {
   return new Promise(resolve => {
     let docClient = new AWS.DynamoDB.DocumentClient()
@@ -37,24 +22,37 @@ export function allFavorites () {
   })
 }
 
-export function putOneProject (projectName) {
-  let docClient = new AWS.DynamoDB.DocumentClient()
-
-  let params = {
-
-  }
-}
-
-export function deleteProjects (projects) {
-  let docClient = new AWS.DynamoDB.DocumentClient()
-
-  projects.forEach(project => {
+export function putOneFavorite (favorite) {
+  return new Promise(resolve => {
+    let docClient = new AWS.DynamoDB.DocumentClient()
     let params = {
-      TableName: 'Projects',
-      Key: {
-        projectID: project
+      TableName: 'Favorites',
+      Item: {'favoriteID': favorite.id,
+        'family': favorite.family
       }
     }
+
+    docClient.put(params, (err, data) => {
+      if (err) {
+        console.error(`Unable to add item: ${JSON.stringify(err, undefined, 2)}`)
+      } else {
+        resolve(data)
+      }
+    })
+  })
+}
+
+export function deleteFavorite (favorite) {
+  let docClient = new AWS.DynamoDB.DocumentClient()
+
+  favorite.forEach(favorite => {
+    let params = {
+      TableName: 'Favorites',
+      Key: {
+        favoriteID: favorite
+      }
+    }
+
     docClient.delete(params, (err, data) => {
       if (err) console.error(err)
       else {

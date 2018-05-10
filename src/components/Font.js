@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Navbar, Spinner} from '../components'
 import {connect} from 'react-redux'
 import { fetchFont } from '../reducers/fonts'
+import { putFavorite } from '../reducers/favorites'
 import ContentAddCircle from 'material-ui/svg-icons/content/add-circle'
 import ActionFavorite from 'material-ui/svg-icons/action/favorite'
 import SelectField from 'material-ui/SelectField'
@@ -11,11 +12,33 @@ import Slider from 'material-ui/Slider'
 class Font extends Component {
   constructor (props) {
     super(props)
-    this.state = {style: 'normal', variant: '', value: 'Type here to preview your font', weight: 'normal', slider: 16}
+    this.state = {style: 'normal',
+      variant: '',
+      value: 'Type here to preview your font',
+      weight: 'normal',
+      slider: 25,
+      faveToggle: false}
     this.handleChange = this.handleChange.bind(this)
     this.handleSlider = this.handleSlider.bind(this)
     this.handleChangeText = this.handleChangeText.bind(this)
+    this.handleFave = this.handleFave.bind(this)
   }
+
+  handleFave (e, i, fave) {
+    let fontItems = this.props.fontList.items
+    let params = this.props.match.params.family
+    let index = null
+    fontItems.forEach((font, i) => {
+      if (font.family === params) {
+        index = i
+      }
+    })
+    let faveIcon = document.getElementsByClassName('font-favorite')
+    faveIcon[0].classList.toggle('active')
+    this.setState(prevState => ({faveToggle: !prevState.faveToggle}))
+    this.props.putFavorite({id: index, family: params})
+  }
+
   handleChange (e, i, style) {
     this.setState({variant: style})
 
@@ -48,15 +71,30 @@ class Font extends Component {
     this.props.fetchFont(params)
   }
 
+  componentDidUpdate () {
+    let params = this.props.match.params.family
+    console.log('favorites', this.props.favoritesList)
+    this.props.favoritesList.forEach(favorite => {
+      if (favorite.family === params) {
+        if (!this.state.faveToggle) {
+          this.setState(prevState => ({faveToggle: !prevState.faveToggle}))
+          console.log('hittogglecondition', this.state.faveToggle)
+          let faveIcon = document.getElementsByClassName('font-favorite')
+          faveIcon[0].classList.toggle('active')
+        }
+      }
+    })
+  }
+
   render () {
     const fontDetails = this.props.fontList.items
     return (
       <div>
         <Navbar/>
-        <ContentAddCircle className="font-add"/>
-        <ActionFavorite className="font-favorite"/>
+        {this.props.font.length &&
+        fontDetails && <ActionFavorite className="font-favorite" onClick={this.handleFave}/>}
         {
-          this.props.font.length && fontDetails
+          this.props.font.length && fontDetails.length
             ? <div className="font-content">
 
               <p className="font-glyph" style={{fontFamily: `${this.props.font}`}}>
@@ -123,6 +161,7 @@ class Font extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    favoritesList: state.rootFavoritesReducer.favoritesList,
     fontList: state.rootFontReducer.fontList,
     font: state.rootFontReducer.font
   }
@@ -130,7 +169,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchFont: (params) => dispatch(fetchFont(params))
+    fetchFont: (params) => dispatch(fetchFont(params)),
+    putFavorite: (favorite) => dispatch(putFavorite(favorite))
   }
 }
 

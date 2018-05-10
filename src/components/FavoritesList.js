@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchFavorites} from '../reducers/favorites'
 import store from '../store'
+import {Spinner} from '../components'
 
 class FavoritesList extends Component {
   componentDidMount () {
@@ -12,20 +13,27 @@ class FavoritesList extends Component {
   render () {
     const {favoritesList} = this.props
     return (
-      <div>
-        <p>You have no favorites</p>
-        <ul>
-          {favoritesList.length &&
-          favoritesList.map(favorite => {
+      <div className='favoriteslist-content'>
+        {favoritesList.length
+          ? favoritesList.map((favorite, i) => {
             return (
-              <li key={favorite.favoriteID}>{`${favorite.favoriteID}, 
-              ${favorite.fonts.family}, 
-              ${favorite.fonts.category}, 
-              ${favorite.fonts.styles} `}
-              </li>
+              <div key={favorite.favoriteID} className='favoriteslist-map'>
+                <p className="font-glyph" style={{fontFamily: `${favorite.family}`}}>
+                  {`${favorite.family[0].toUpperCase()}${favorite.family[0].toLowerCase()}`}
+                </p>
+
+                <p className="font-fam" style={{fontFamily: `${favorite.family}`}}>
+                  {`${favorite.family}`}
+                </p>
+                {i !== favoritesList.length - 1
+                  ? <div className="font-headerLine"></div>
+                  : <div></div>
+                }
+              </div>
             )
-          })}
-        </ul>
+          })
+          : <Spinner/>
+        }
       </div>
     )
   }

@@ -24,7 +24,7 @@ let createFavorites = () => {
 let createSampleFavorites = () => {
   let categories = ['serif', 'sans-serif']
   let styles = ['100', 'regular', '700italic']
-
+  let families = ['Montserrat', 'Alegreya', 'Roboto', 'Open Sans']
   let getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min)
     max = Math.floor(max)
@@ -35,9 +35,7 @@ let createSampleFavorites = () => {
       TableName: 'Favorites',
       Item: {
         'favoriteID': i,
-        'fonts': {'family': 'Montserrat',
-          'category': categories[getRandomIntInclusive(0, categories.length - 1)],
-          'styles': styles[getRandomIntInclusive(0, styles.length - 1)] }
+        'family': families[getRandomIntInclusive(0, families.length - 1)]
       }
     }
 
@@ -50,9 +48,17 @@ let createSampleFavorites = () => {
   }
 }
 
-createFavorites()
-createSampleFavorites()
+// let deleteFavorites = () => {
+//   let params = {TableName: 'Favorites'}
 
+//   dynamodb.deleteTable(params, (err, data) => {
+//     if (err) console.error(err)
+//     else console.log('Table deleted')
+//   })
+// }
+createFavorites()
+// createSampleFavorites()
+// deleteFavorites()
 /*
 let tableExists = () => {
   let params = {TableName: 'Projects'}
