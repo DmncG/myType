@@ -22,6 +22,21 @@ export function allProjects () {
   })
 }
 
+export function allFavorites () {
+  return new Promise(resolve => {
+    let docClient = new AWS.DynamoDB.DocumentClient()
+    let params = {
+      TableName: 'Favorites'
+    }
+    docClient.scan(params, (err, data) => {
+      if (err) console.error(err)
+      else {
+        resolve(data.Items)
+      }
+    })
+  })
+}
+
 export function putOneProject (projectName) {
   let docClient = new AWS.DynamoDB.DocumentClient()
 

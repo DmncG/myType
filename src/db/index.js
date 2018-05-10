@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk')
 // const fontsdb = require('./tables/fontsdb')
-const projectsdb = require('./tables/projectsdb')
+const favoritesdb = require('./tables/favoritesdb')
 AWS.config.update({
   region: 'us-west-2',
   endpoint: 'http://localhost:8000',
@@ -11,8 +11,8 @@ AWS.config.update({
 let dynamodb = new AWS.DynamoDB()
 let docClient = new AWS.DynamoDB.DocumentClient()
 
-let createProjects = () => {
-  dynamodb.createTable(projectsdb, function (err, data) {
+let createFavorites = () => {
+  dynamodb.createTable(favoritesdb, function (err, data) {
     if (err) {
       console.error('Unable to create table. Error JSON:', JSON.stringify(err, null, 2))
     } else {
@@ -21,11 +21,9 @@ let createProjects = () => {
   })
 }
 
-// create sample data
-
-let createSample = () => {
+let createSampleFavorites = () => {
   let categories = ['serif', 'sans-serif']
-  let variants = ['bold', 'italic', 'regular']
+  let styles = ['100', 'regular', '700italic']
 
   let getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min)
@@ -34,12 +32,12 @@ let createSample = () => {
   }
   for (let i = 1; i <= 5; i++) {
     let params = {
-      TableName: 'Projects',
+      TableName: 'Favorites',
       Item: {
-        'projectID': i,
+        'favoriteID': i,
         'fonts': {'family': 'Montserrat',
           'category': categories[getRandomIntInclusive(0, categories.length - 1)],
-          'variants': variants[getRandomIntInclusive(0, variants.length - 1)] }
+          'styles': styles[getRandomIntInclusive(0, styles.length - 1)] }
       }
     }
 
@@ -51,8 +49,10 @@ let createSample = () => {
     })
   }
 }
-createProjects()
-createSample()
+
+createFavorites()
+createSampleFavorites()
+
 /*
 let tableExists = () => {
   let params = {TableName: 'Projects'}

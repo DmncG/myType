@@ -31,8 +31,7 @@ export default class Menu extends Component {
           <NavigationClose id="menu-closeIcon" onClick={this.handleToggle}/>
           <MenuItem><Link to='/home' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Home</Link></MenuItem>
           <MenuItem><Link to='/directory' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Directory</Link></MenuItem>
-          <MenuItem>Favorites</MenuItem>
-          <MenuItem><Link to='/projects' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Projects *coming soon*</Link></MenuItem>
+          <MenuItem><Link to='/favorites' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Favorites</Link></MenuItem>
           <MenuItem><Link to='/search' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Search</Link></MenuItem>
         </Drawer>
       </div>

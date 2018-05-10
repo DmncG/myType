@@ -2,9 +2,9 @@ import {createStore, applyMiddleware, combineReducers} from 'redux'
 import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import rootFontReducer from './reducers/fonts'
-import rootProjectReducer from './reducers/projects'
 import rootStatusReducer from './reducers/status'
+import rootFavoritesReducer from './reducers/favorites'
 
-const reducer = combineReducers({rootFontReducer, rootProjectReducer, rootStatusReducer})
+const reducer = combineReducers({rootFontReducer, rootStatusReducer, rootFavoritesReducer})
 const store = createStore(reducer, applyMiddleware(thunkMiddleware, createLogger()))
 export default store
