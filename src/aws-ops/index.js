@@ -42,21 +42,20 @@ export function putOneFavorite (favorite) {
   })
 }
 
-export function deleteFavorite (favorite) {
-  let docClient = new AWS.DynamoDB.DocumentClient()
-
-  favorite.forEach(favorite => {
+export function deleteOneFavorite (favorite) {
+  return new Promise(resolve => {
+    let docClient = new AWS.DynamoDB.DocumentClient()
     let params = {
       TableName: 'Favorites',
       Key: {
-        favoriteID: favorite
+        'favoriteID': favorite.id
       }
     }
 
     docClient.delete(params, (err, data) => {
       if (err) console.error(err)
       else {
-        return data
+        resolve(data)
       }
     })
   })
