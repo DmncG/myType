@@ -48,7 +48,7 @@ export function deleteOneFavorite (favorite) {
     let params = {
       TableName: 'Favorites',
       Key: {
-        'favoriteID': favorite.id
+        'favoriteID': favorite
       }
     }
 

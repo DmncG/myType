@@ -32,7 +32,7 @@ class FavoritesList extends Component {
               </div>
             )
           })
-          : <Spinner/>
+          : <div style={{margin: 'auto'}}>You have no favorites </div>
         }
       </div>
     )

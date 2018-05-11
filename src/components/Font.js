@@ -26,27 +26,30 @@ class Font extends Component {
 
   handleFave (e, i, fave) {
     let fontItems = this.props.fontList.items
-    let favoritesList = this.props.favoritesList
     let params = this.props.match.params.family
     let index = null
+
+    let faveIcon = document.getElementsByClassName('font-favorite')
+
     fontItems.forEach((font, i) => {
       if (font.family === params) {
         index = i
       }
     })
-    let faveArr = favoritesList.map(favorite => {
+
+    let favoritesList = this.props.favoritesList.map(favorite => {
       return favorite.family
     })
 
-    let faveIcon = document.getElementsByClassName('font-favorite')
-    if (faveArr.indexOf(params) < 0) {
-      this.props.putFavorite({id: index, family: params})
-      faveIcon[0].classList.add('active')
+    console.log('favoritesList', favoritesList)
+
+    if (favoritesList.indexOf(params) > -1) {
+      faveIcon[0].classList.toggle('active')
+      this.props.removeFavorite({id: index, family: params})
     } else {
-      faveIcon[0].classList.remove('active')
+      this.props.putFavorite({id: index, family: params})
+      faveIcon[0].classList.toggle('active')
     }
-    this.setState(prevState => ({faveToggle: !prevState.faveToggle}))
-    console.log('state after fave', this.state)
   }
 
   handleChange (e, i, style) {
@@ -78,14 +81,39 @@ class Font extends Component {
 
   componentDidMount () {
     let params = this.props.match.params.family
+    let faveIcon = document.getElementsByClassName('font-favorite')
     this.props.fetchFont(params)
+    if (this.state.favoritesList && this.state.favoritesList.length) {
+      let favoritesList = this.props.favoritesList.map(favorite => {
+        return favorite.family
+      })
+      if (favoritesList.indexOf(params) > -1) {
+        console.log('favorite exists')
+        faveIcon[0] && faveIcon[0].classList &&
+        (
+          faveIcon[0].classList.add('active')
+        )
+      }
+    }
+    console.log('state', this.state, 'props', this.props)
   }
 
   componentDidUpdate () {
-    let params = this.props.match.params.family
-    this.props.favoritesList.forEach(favorite => {
-      if (favorite.family === params) {
-        console.log('updating component', this.state)
+    console.log('component is updating')
+    // let params = this.props.match.params.family
+    // let faveIcon = document.getElementsByClassName('font-favorite')
+    // this.props.favoritesList.forEach(favorite => {
+    //   if (favorite.family === params) {
+    //     if (faveIcon[0] && faveIcon[0].classList) {
+    //       if (!this.state.faveToggle) {
+    //         faveIcon[0].classList.add('active')
+    //       }
+    //     }
+
+        // faveIcon && faveIcon[0] && faveIcon[0].classList
+        //   ? faveIcon[0].classList.add('active')
+        //   : console.log('nothing yet')
+        // console.log('updating component', this.state)
         // if (!this.state.faveToggle) {
         //   this.setState(prevState => ({faveToggle: true}))
         //   let faveIcon = document.getElementsByClassName('font-favorite')
@@ -93,8 +121,8 @@ class Font extends Component {
         //     faveIcon[0].classList.toggle('active')
         //   }
         // }
-      }
-    })
+    //   }
+    // })
   }
 
   render () {
