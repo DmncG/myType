@@ -400,6 +400,8 @@ FAVORITESLIST COMPONENT
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
-  grid-row-gap: 10px; }
+  grid-row-gap: 10px;
+  text-decoration: none;
+  color: #000000; }
 
 /*# sourceMappingURL=style.css.map*/

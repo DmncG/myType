@@ -449,4 +449,6 @@ FAVORITESLIST COMPONENT
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   grid-row-gap: 10px;
+  text-decoration: none;
+  color: $text-default;
 }

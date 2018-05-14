@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchFavorites} from '../reducers/favorites'
 import store from '../store'
 import {Spinner} from '../components'
+import {Link} from 'react-router-dom'
 
 class FavoritesList extends Component {
   componentDidMount () {
@@ -17,7 +18,7 @@ class FavoritesList extends Component {
         {favoritesList.length
           ? favoritesList.map((favorite, i) => {
             return (
-              <div key={favorite.favoriteID} className='favoriteslist-map'>
+              <Link to={`/font/${favorite.family}`}key={favorite.favoriteID} className='favoriteslist-map'>
                 <p className="font-glyph" style={{fontFamily: `${favorite.family}`}}>
                   {`${favorite.family[0].toUpperCase()}${favorite.family[0].toLowerCase()}`}
                 </p>
@@ -29,7 +30,7 @@ class FavoritesList extends Component {
                   ? <div className="font-headerLine"></div>
                   : <div></div>
                 }
-              </div>
+              </Link>
             )
           })
           : <div style={{margin: 'auto'}}>You have no favorites </div>

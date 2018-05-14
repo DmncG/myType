@@ -56,7 +56,6 @@ class Font extends Component {
 
     let match = `${style}`.match(/[0-9]{3}italic/gi)
     if (match) {
-      console.log('match', match[0].slice(0, 3), match[0].slice(3))
       this.setState({weight: match[0].slice(0, 3), style: match[0].slice(3)})
     } else {
       if (style === 'regular') {
@@ -82,10 +81,8 @@ class Font extends Component {
     let params = this.props.match.params.family
     let faveIcon = document.getElementsByClassName('font-favorite')
     this.props.fetchFont(params)
-    console.log('component mounted')
     this.props.favoritesList.forEach(favorite => {
       if (favorite.family === params) {
-        console.log('hit famparams')
         if (faveIcon[0] && faveIcon[0].classList) {
           if (!this.state.faveToggle) {
             faveIcon[0].classList.add('active')
@@ -100,7 +97,6 @@ class Font extends Component {
     let faveIcon = document.getElementsByClassName('font-favorite')
     this.props.favoritesList.forEach(favorite => {
       if (favorite.family === params) {
-        console.log('hit famparams')
         if (faveIcon[0] && faveIcon[0].classList) {
           if (!this.state.faveToggle) {
             faveIcon[0].classList.add('active')
