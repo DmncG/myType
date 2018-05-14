@@ -366,12 +366,41 @@ FONT COMPONENT
 FAVORITES COMPONENT
 ***********************
 */
+.favorites-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 25px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  padding: 70px 10px 5px 10px;
+  margin: 0px 10px 5px 10px; }
+
+.favorites-edit {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  text-align: left;
+  grid-column-start: 1;
+  grid-column-end: 2; }
+
+.favorites-done {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  text-align: right;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  opacity: 0; }
+
+.active-done {
+  opacity: 1; }
+
 #favorites-header {
   font-size: 50px;
   color: #000000;
   text-align: center;
   display: block;
-  padding: 100px 5px 5px 5px;
+  padding: 5px;
   margin: 0;
   font-family: "Montserrat", sans-serif;
   font-weight: 400; }
@@ -396,12 +425,32 @@ FAVORITESLIST COMPONENT
   margin: 0px 10px 10px 10px;
   grid-row-gap: 20px; }
 
+.favoriteslist-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; }
+
 .favoriteslist-map {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   grid-row-gap: 10px;
   text-decoration: none;
-  color: #000000; }
+  color: #000000;
+  grid-column-start: 2;
+  grid-column-end: 3; }
+
+.favoriteslist-icon {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  justify-self: center; }
+
+.favoriteslist-remove {
+  opacity: 0 !important;
+  fill: #960000 !important;
+  height: 40px !important;
+  width: 40px !important; }
+
+.active-remove {
+  opacity: 1 !important; }
 
 /*# sourceMappingURL=style.css.map*/

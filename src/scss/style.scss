@@ -410,12 +410,46 @@ FAVORITES COMPONENT
 ***********************
 */
 
+.favorites-buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 25px;
+  font-family: $font-default;
+  font-weight: $font-weight-default;
+  padding: 70px 10px 5px 10px;
+  margin: 0px 10px 5px 10px;
+}
+
+.favorites-edit{
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  text-align: left;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.favorites-done{
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  text-align: right;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  opacity: 0;
+}
+
+.active-done{
+  opacity: 1;
+}
+
+
 #favorites-header{
   font-size: 50px;
   color: $text-default;
   text-align: center;
   display: block;
-  padding: 100px 5px 5px 5px;
+  padding: 5px;
   margin: 0;
   font-family: $font-default;
   font-weight: $font-weight-default;
@@ -444,6 +478,12 @@ FAVORITESLIST COMPONENT
   grid-row-gap: 20px;
 }
 
+.favoriteslist-div{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+}
+
 .favoriteslist-map{
   display: grid;
   grid-template-columns: 1fr;
@@ -451,4 +491,23 @@ FAVORITESLIST COMPONENT
   grid-row-gap: 10px;
   text-decoration: none;
   color: $text-default;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.favoriteslist-icon{
+  grid-column-start: 3;
+  grid-column-end: 4;
+  justify-self: center;
+}
+
+.favoriteslist-remove{
+  opacity: 0 !important;
+  fill: rgb(150, 0, 0) !important;
+  height: 40px !important;
+  width: 40px !important;
+}
+
+.active-remove{
+  opacity: 1 !important;
 }

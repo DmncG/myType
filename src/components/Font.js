@@ -78,6 +78,7 @@ class Font extends Component {
   }
 
   componentDidMount () {
+    console.log('props', this.props)
     let params = this.props.match.params.family
     let faveIcon = document.getElementsByClassName('font-favorite')
     this.props.fetchFont(params)

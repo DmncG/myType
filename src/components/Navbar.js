@@ -11,7 +11,8 @@ const Navbar = props => {
     <AppBar className="navbar-main" title={<Link to='/home'
       id="navbar-title"
       style={{textDecoration: 'none', color: '#ffffff'}}>
-      myType.</Link>} iconElementRight={<Menu/>}
+      myType.</Link>}
+    iconElementRight={<Menu/>}
     iconElementLeft={<IconButton><ActionSearch id="navbar-search"/></IconButton>}
     style={{backgroundColor: '#000000'}}
     titleStyle={{textAlign: 'center'}}/>
