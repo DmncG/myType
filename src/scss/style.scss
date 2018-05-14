@@ -430,6 +430,10 @@ FAVORITES COMPONENT
   border: none;
   background-color: transparent;
   width: 65px;
+
+  &:focus{
+    outline: none;
+  }
 }
 
 .favorites-done{
@@ -442,6 +446,10 @@ FAVORITES COMPONENT
   opacity: 0;
   border: none;
   background-color: transparent;
+
+  &:focus{
+    outline: none;
+  }
 
 }
 
