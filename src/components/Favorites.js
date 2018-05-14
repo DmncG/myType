@@ -6,7 +6,7 @@ import {putProject, removeProject} from '../reducers/projects'
 class Favorites extends Component {
   constructor (props) {
     super(props)
-    this.state = {disabled: true}
+    this.state = {disabled: true, visible: 'hidden'}
     this.handleEdit = this.handleEdit.bind(this)
     this.handleDone = this.handleDone.bind(this)
   }
@@ -17,7 +17,7 @@ class Favorites extends Component {
     console.log('handleDone attr', done)
     done[0].classList.add('active-done')
     removeFave[0].classList.add('active-remove')
-    this.setState({disabled: false})
+    this.setState({disabled: false, visible: 'visibile'})
   }
 
   handleDone () {
@@ -26,7 +26,7 @@ class Favorites extends Component {
     console.log('handleDone clicked', done)
     removeFave[0].classList.remove('active-remove')
     done[0].classList.remove('active-done')
-    this.setState({disabled: true})
+    this.setState({disabled: true, visible: 'hidden'})
   }
 
   render () {
@@ -39,7 +39,7 @@ class Favorites extends Component {
         </div>
         <p id='favorites-header'>Favorites</p>
         <div id='favorites-headerLine'></div>
-        <FavoritesList disabledVal={this.state.disabled}/>
+        <FavoritesList disabledVal={this.state.disabled} visible={this.state.visible}/>
       </div>
     )
   }

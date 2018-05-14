@@ -47,7 +47,7 @@ class FavoritesList extends Component {
                   onClick={(e) => {
                     this.handleRemove({id: favorite.favoriteID, family: favorite.family}, e)
                   }}>
-                  <ContentRemoveCircle className='favoriteslist-remove' disabled={this.props.disabledVal}/>
+                  <ContentRemoveCircle className='favoriteslist-remove' disabled={this.props.disabledVal} visibility={this.props.visible}/>
                 </IconButton>
               </div>
             )

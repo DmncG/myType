@@ -412,7 +412,7 @@ FAVORITES COMPONENT
 
 .favorites-buttons{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr .3fr;
   font-size: 25px;
   font-family: $font-default;
   font-weight: $font-weight-default;
@@ -427,6 +427,9 @@ FAVORITES COMPONENT
   text-align: left;
   grid-column-start: 1;
   grid-column-end: 2;
+  border: none;
+  background-color: transparent;
+  width: 65px;
 }
 
 .favorites-done{
@@ -437,6 +440,9 @@ FAVORITES COMPONENT
   grid-column-start: 2;
   grid-column-end: 3;
   opacity: 0;
+  border: none;
+  background-color: transparent;
+
 }
 
 .active-done{
@@ -502,12 +508,11 @@ FAVORITESLIST COMPONENT
 }
 
 .favoriteslist-remove{
-  opacity: 0 !important;
   fill: rgb(150, 0, 0) !important;
   height: 40px !important;
   width: 40px !important;
 }
 
 .active-remove{
-  opacity: 1 !important;
+  
 }

@@ -368,7 +368,7 @@ FAVORITES COMPONENT
 */
 .favorites-buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr .3fr;
   font-size: 25px;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -381,7 +381,10 @@ FAVORITES COMPONENT
   font-weight: inherit;
   text-align: left;
   grid-column-start: 1;
-  grid-column-end: 2; }
+  grid-column-end: 2;
+  border: none;
+  background-color: transparent;
+  width: 65px; }
 
 .favorites-done {
   font-size: inherit;
@@ -390,7 +393,9 @@ FAVORITES COMPONENT
   text-align: right;
   grid-column-start: 2;
   grid-column-end: 3;
-  opacity: 0; }
+  opacity: 0;
+  border: none;
+  background-color: transparent; }
 
 .active-done {
   opacity: 1; }
@@ -445,12 +450,8 @@ FAVORITESLIST COMPONENT
   justify-self: center; }
 
 .favoriteslist-remove {
-  opacity: 0 !important;
   fill: #960000 !important;
   height: 40px !important;
   width: 40px !important; }
-
-.active-remove {
-  opacity: 1 !important; }
 
 /*# sourceMappingURL=style.css.map*/
