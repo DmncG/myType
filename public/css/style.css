@@ -385,6 +385,8 @@ FAVORITES COMPONENT
   border: none;
   background-color: transparent;
   width: 65px; }
+  .favorites-edit:focus {
+    outline: none; }
 
 .favorites-done {
   font-size: inherit;
@@ -396,6 +398,8 @@ FAVORITES COMPONENT
   opacity: 0;
   border: none;
   background-color: transparent; }
+  .favorites-done:focus {
+    outline: none; }
 
 .active-done {
   opacity: 1; }
@@ -453,5 +457,19 @@ FAVORITESLIST COMPONENT
   fill: #960000 !important;
   height: 40px !important;
   width: 40px !important; }
+
+/*
+***********************
+SEARCH COMPONENT
+***********************
+*/
+.search-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  font-size: 25px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  padding: 70px 10px 5px 10px;
+  margin: 0px 10px 5px 10px; }
 
 /*# sourceMappingURL=style.css.map*/
