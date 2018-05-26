@@ -29,7 +29,7 @@ export default class Menu extends Component {
         <NavigationMenu id="menu-burger" color={'#ffffff'} onClick={this.handleToggle} />
         <Drawer open={this.state.open} openSecondary={true} docked={false} onRequestChange={(open) => this.setState({open})}>
           <NavigationClose id="menu-closeIcon" onClick={this.handleToggle}/>
-          <MenuItem><Link to='/home' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Home</Link></MenuItem>
+          <MenuItem><Link to='/' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Home</Link></MenuItem>
           <MenuItem><Link to='/directory' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Directory</Link></MenuItem>
           <MenuItem><Link to='/favorites' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Favorites</Link></MenuItem>
           <MenuItem><Link to='/search' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Search</Link></MenuItem>
