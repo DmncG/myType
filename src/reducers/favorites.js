@@ -68,9 +68,7 @@ export function putFavorite (favoriteName) {
   return function thunk (dispatch) {
     putOneFavorite(favoriteName)
       .then(res => {
-        let action = addFavorite({favoriteID: favoriteName.id, family: favoriteName.family})
-        console.log('res', res)
-        console.log('thunk favorite reached')
+        let action = addFavorite({fID: favoriteName.id, fam: favoriteName.family})
         dispatch(action)
       })
       .catch(err => console.log(err))
@@ -79,7 +77,7 @@ export function putFavorite (favoriteName) {
 
 export function removeFavorite (favorite) {
   return function thunk (dispatch) {
-    deleteOneFavorite(favorite.id)
+    deleteOneFavorite(favorite.id, favorite.family, favorite.favoritesList)
       .then(res => {
         let action = deleteFavorite(favorite.family)
         dispatch(action)
@@ -100,7 +98,7 @@ const rootFavoritesReducer = (state = initialState, action) => {
       return Object.assign({}, state, {favoritesList: [...state.favoritesList, action.favorite]})
     case DELETE_FAVORITE:
       return Object.assign({}, state, {favoritesList: state.favoritesList.filter(favorite => {
-        if (favorite.family !== action.favorite) {
+        if (favorite.fam !== action.favorite) {
           return favorite
         }
       })})

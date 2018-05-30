@@ -38,12 +38,12 @@ class Font extends Component {
     })
 
     let favoritesList = this.props.favoritesList.map(favorite => {
-      return favorite.family
+      return favorite.fam
     })
 
     if (favoritesList.indexOf(params) > -1) {
       faveIcon[0].classList.toggle('active')
-      this.props.removeFavorite({id: index, family: params})
+      this.props.removeFavorite({id: index, family: params, favoritesList})
       this.setState(prevState => ({faveToggle: !prevState.toggle}))
     } else {
       this.props.putFavorite({id: index, family: params})
@@ -83,7 +83,9 @@ class Font extends Component {
     let faveIcon = document.getElementsByClassName('font-favorite')
     this.props.fetchFont(params)
     this.props.favoritesList.forEach(favorite => {
-      if (favorite.family === params) {
+      console.log('CDMfaveParams', favorite, params)
+      if (favorite.fam === params) {
+        console.log('fave and params match')
         if (faveIcon[0] && faveIcon[0].classList) {
           if (!this.state.faveToggle) {
             faveIcon[0].classList.add('active')
@@ -97,7 +99,7 @@ class Font extends Component {
     let params = this.props.match.params.family
     let faveIcon = document.getElementsByClassName('font-favorite')
     this.props.favoritesList.forEach(favorite => {
-      if (favorite.family === params) {
+      if (favorite.fam === params) {
         if (faveIcon[0] && faveIcon[0].classList) {
           if (!this.state.faveToggle) {
             faveIcon[0].classList.add('active')

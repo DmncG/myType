@@ -15,7 +15,10 @@ class FavoritesList extends Component {
   }
 
   handleRemove (value, e) {
-    this.props.removeFavorite({id: value.id, family: value.family})
+    let favoritesList = this.props.favoritesList.map(favorite => {
+      return favorite.fam
+    })
+    this.props.removeFavorite({id: value.id, family: value.family, favoritesList})
   }
   componentDidMount () {
     let favoritesThunk = fetchFavorites()
@@ -29,14 +32,14 @@ class FavoritesList extends Component {
         {favoritesList.length
           ? favoritesList.map((favorite, i) => {
             return (
-              <div key={favorite.favoriteID} className='favoriteslist-div'>
-                <Link to={`/font/${favorite.family}`} className='favoriteslist-map'>
-                  <p className="font-glyph" style={{fontFamily: `${favorite.family}`}}>
-                    {`${favorite.family[0].toUpperCase()}${favorite.family[0].toLowerCase()}`}
+              <div key={favorite.fID} className='favoriteslist-div'>
+                <Link to={`/font/${favorite.fam}`} className='favoriteslist-map'>
+                  <p className="font-glyph" style={{fontFamily: `${favorite.fam}`}}>
+                    {`${favorite.fam[0].toUpperCase()}${favorite.fam[0].toLowerCase()}`}
                   </p>
 
-                  <p className="font-fam" style={{fontFamily: `${favorite.family}`}}>
-                    {`${favorite.family}`}
+                  <p className="font-fam" style={{fontFamily: `${favorite.fam}`}}>
+                    {`${favorite.fam}`}
                   </p>
                   {i !== favoritesList.length - 1
                     ? <div className="font-headerLine"></div>
@@ -45,7 +48,7 @@ class FavoritesList extends Component {
                 </Link>
                 <IconButton className='favoriteslist-icon'
                   onClick={(e) => {
-                    this.handleRemove({id: favorite.favoriteID, family: favorite.family}, e)
+                    this.handleRemove({id: favorite.fID, family: favorite.fam}, e)
                   }}>
                   <ContentRemoveCircle className='favoriteslist-remove' disabled={this.props.disabledVal} visibility={this.props.visible}/>
                 </IconButton>

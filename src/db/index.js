@@ -22,40 +22,38 @@ let createFavorites = () => {
 }
 
 let createSampleFavorites = () => {
-  let categories = ['serif', 'sans-serif']
-  let styles = ['100', 'regular', '700italic']
-  let families = ['Montserrat', 'Alegreya', 'Roboto', 'Open Sans']
-  let getRandomIntInclusive = (min, max) => {
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min + 1)) + min
-  }
-  for (let i = 1; i <= 5; i++) {
-    let params = {
-      TableName: 'Favorites',
-      Item: {
-        'favoriteID': i,
-        'family': families[getRandomIntInclusive(0, families.length - 1)]
-      }
+  // let categories = ['serif', 'sans-serif']
+  // let styles = ['100', 'regular', '700italic']
+  // let families = ['Montserrat', 'Alegreya', 'Roboto', 'Open Sans']
+  // let getRandomIntInclusive = (min, max) => {
+  //   min = Math.ceil(min)
+  //   max = Math.floor(max)
+  //   return Math.floor(Math.random() * (max - min + 1)) + min
+  // }
+  let params = {
+    TableName: 'Favorites',
+    Item: {
+      'favoriteID': 12345,
+      'f': [{'fID': 1, 'fam': 'Abel'}, {'fID': 5, 'fam': 'Acme'}]
     }
-
-    docClient.put(params, (err, data) => {
-      if (err) console.error(err)
-      else {
-        return data
-      }
-    })
   }
+
+  docClient.put(params, (err, data) => {
+    if (err) console.error(err)
+    else {
+      return data
+    }
+  })
 }
 
-// let deleteFavorites = () => {
-//   let params = {TableName: 'Favorites'}
+let deleteFavorites = () => {
+  let params = {TableName: 'Favorites', Key: {'favoriteID': 12345}}
 
-//   dynamodb.deleteTable(params, (err, data) => {
-//     if (err) console.error(err)
-//     else console.log('Table deleted')
-//   })
-// }
+  docClient.delete(params, (err, data) => {
+    if (err) console.error(err)
+    else console.log('User deleted')
+  })
+}
 createFavorites()
 // createSampleFavorites()
 // deleteFavorites()

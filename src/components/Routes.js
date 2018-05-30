@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Route, Router} from 'react-router'
 import {Switch, Redirect} from 'react-router-dom'
-import {Home, PageNotFound, Font, Search, Directory, Favorites} from '../components'
+import {Home, PageNotFound, Font, Search, Directory, Favorites, Signup} from '../components'
 import {fetchFonts} from '../reducers/fonts'
 import {fetchFavorites} from '../reducers/favorites'
 import history from './history'
@@ -20,6 +20,7 @@ export default class Routes extends Component {
       <Router history={history}>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/signup" component={Signup} />
           <Route path="/home" component={Home} />
           <Route path="/font/:family" component={Font} />
           <Route path="/search" component={Search} />
