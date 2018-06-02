@@ -33,8 +33,8 @@ let createSampleFavorites = () => {
   let params = {
     TableName: 'Favorites',
     Item: {
-      'favoriteID': 12345,
-      'f': [{'fID': 1, 'fam': 'Abel'}, {'fID': 5, 'fam': 'Acme'}]
+      'favoriteID': '30bd0683-3215-42e6-ba8a-266acd0d7f5a',
+      'f': []
     }
   }
 
@@ -47,12 +47,22 @@ let createSampleFavorites = () => {
 }
 
 let deleteFavorites = () => {
-  let params = {TableName: 'Favorites', Key: {'favoriteID': 12345}}
+  let params = {TableName: 'Favorites', Key: {'favoriteID': '12345'}}
 
   docClient.delete(params, (err, data) => {
     if (err) console.error(err)
     else console.log('User deleted')
   })
+
+  // let params = {TableName: 'Favorites'}
+
+  // dynamodb.deleteTable(params, (err, data) => {
+  //   if (err) {
+  //     console.error('Unable to delete table. Error JSON:', JSON.stringify(err, null, 2))
+  //   } else {
+  //     console.log('Deleted table. Table description JSON:', JSON.stringify(data, null, 2))
+  //   }
+  // })
 }
 createFavorites()
 // createSampleFavorites()

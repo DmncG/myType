@@ -4,11 +4,15 @@ import TextField from 'material-ui/TextField'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Authenticator, withAuthenticator, SignIn, SignUp, ConfirmSignUp, Greetings} from 'aws-amplify-react'
+import {getSession} from '../reducers/user'
+import {removeFaveFromMenu} from '../reducers/favorites'
+import {removeSessionFromState} from '../reducers/user'
+import store from '../store'
 
-class Signup extends Component {
+export default class Signup extends Component {
   constructor (props) {
     super(props)
-    this.state = {session: {}}
+    this.state = {session: 'signIn'}
     this.handleChange = this.handleChange.bind(this)
     this.handlePW = this.handlePW.bind(this)
   }
@@ -23,9 +27,14 @@ class Signup extends Component {
     e.preventDefault()
   }
 
-  handleAuthStateChange (state) {
-    if (state === 'signedIn') {
-      console.log('thisisthestate', state)
+  handleAuthStateChange (status) {
+    console.log('thisistheAuthState', status)
+    if (status === 'signedIn') {
+      store.dispatch(getSession())
+    }
+    if (status === 'signIn') {
+      store.dispatch(removeFaveFromMenu())
+      store.dispatch(removeSessionFromState())
     }
   }
 
@@ -57,13 +66,3 @@ class Signup extends Component {
     )
   }
 }
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-    fontList: state.rootFontReducer.fontList
-  }
-}
-
-const containerSignup = connect(mapStateToProps)(Signup)
-
-export default containerSignup

@@ -14,6 +14,7 @@ export const GET_FAVORITES = 'GET_FAVORITES'
 export const GET_ONEFAVORITE = 'GET_ONEFAVORITE'
 export const ADD_FAVORITE = 'ADD_FAVORITE'
 export const DELETE_FAVORITE = 'DELETE_FAVORITE'
+export const REMOVE_FAVE_MENU = 'REMOVE_FAVE_MENU'
 
 // ACTION CREATORS
 
@@ -36,18 +37,23 @@ export function deleteFavorite (favorite) {
   const action = {type: DELETE_FAVORITE, favorite}
   return action
 }
+
+export function removeFaveMenu () {
+  const action = {type: REMOVE_FAVE_MENU}
+  return action
+}
 // THUNKS
 
-export function fetchFavorites () {
+export function fetchFavorites (username) {
   return function thunk (dispatch) {
-    allFavorites()
+    allFavorites(username)
       .then(res => {
         console.log('res***', res)
         dispatch(isFetching())
         return res
       })
       .then(payload => {
-        let action = getFavorites(payload)
+        let action = getFavorites(payload.Item.f)
         dispatch(action)
       })
       .then(dispatch(isFetched()))
@@ -60,14 +66,16 @@ export function fetchFavorites () {
 
 export function fetchOneFavorite () {
   return function thunk (dispatch) {
-
+    
   }
 }
 
 export function putFavorite (favoriteName) {
+  console.log('usernameinputfave', favoriteName)
   return function thunk (dispatch) {
     putOneFavorite(favoriteName)
       .then(res => {
+        console.log('resofputfave', res)
         let action = addFavorite({fID: favoriteName.id, fam: favoriteName.family})
         dispatch(action)
       })
@@ -77,12 +85,18 @@ export function putFavorite (favoriteName) {
 
 export function removeFavorite (favorite) {
   return function thunk (dispatch) {
-    deleteOneFavorite(favorite.id, favorite.family, favorite.favoritesList)
+    deleteOneFavorite(favorite.id, favorite.family, favorite.favoritesList, favorite.userCred)
       .then(res => {
         let action = deleteFavorite(favorite.family)
         dispatch(action)
       })
       .catch(err => console.log(err))
+  }
+}
+
+export function removeFaveFromMenu () {
+  return function thunk (dispatch) {
+    dispatch(removeFaveMenu())
   }
 }
 
@@ -102,6 +116,8 @@ const rootFavoritesReducer = (state = initialState, action) => {
           return favorite
         }
       })})
+    case REMOVE_FAVE_MENU:
+      return Object.assign({}, state, {favoritesList: []})
     default:
       return state
   }

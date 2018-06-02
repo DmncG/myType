@@ -18,12 +18,14 @@ class FavoritesList extends Component {
     let favoritesList = this.props.favoritesList.map(favorite => {
       return favorite.fam
     })
-    this.props.removeFavorite({id: value.id, family: value.family, favoritesList})
+
+    let userCred = this.props.userSession.username
+    this.props.removeFavorite({id: value.id, family: value.family, favoritesList, userCred})
   }
-  componentDidMount () {
-    let favoritesThunk = fetchFavorites()
-    store.dispatch(favoritesThunk)
-  }
+  // componentDidMount () {
+  //   let favoritesThunk = fetchFavorites(this.props.userSession)
+  //   store.dispatch(favoritesThunk)
+  // }
 
   render () {
     const {favoritesList} = this.props
@@ -68,7 +70,8 @@ const mapStateToProps = (state, ownProps) => {
     fontList: state.rootFontReducer.fontList,
     fetching: state.rootFontReducer.fetching,
     fetched: state.rootFontReducer.fetched,
-    erred: state.rootFontReducer.erred
+    erred: state.rootFontReducer.erred,
+    userSession: state.rootUserReducer.session
   }
 }
 

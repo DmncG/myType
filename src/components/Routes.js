@@ -6,13 +6,15 @@ import {fetchFonts} from '../reducers/fonts'
 import {fetchFavorites} from '../reducers/favorites'
 import history from './history'
 import store from '../store'
+import {getSession} from '../reducers/user'
 
 export default class Routes extends Component {
   componentDidMount () {
     const fontThunk = fetchFonts()
     const favesThunk = fetchFavorites()
     store.dispatch(fontThunk)
-    store.dispatch(favesThunk)
+    // store.dispatch(favesThunk)
+    store.dispatch(getSession())
   }
 
   render () {

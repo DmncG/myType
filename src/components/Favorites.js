@@ -14,17 +14,20 @@ class Favorites extends Component {
   handleEdit () {
     let done = document.getElementsByClassName('favorites-done')
     let removeFave = document.getElementsByClassName('favoriteslist-remove')
-    console.log('handleDone attr', done)
     done[0].classList.add('active-done')
-    removeFave[0].classList.add('active-remove')
+    if (removeFave.length) {
+      removeFave[0].classList.add('active-remove')
+    }
     this.setState({disabled: false, visible: 'visibile'})
   }
 
   handleDone () {
     let done = document.getElementsByClassName('favorites-done')
     let removeFave = document.getElementsByClassName('favoriteslist-remove')
-    console.log('handleDone clicked', done)
-    removeFave[0].classList.remove('active-remove')
+    console.log('handleDone clicked', done, removeFave)
+    if (removeFave.length) {
+      removeFave[0].classList.remove('active-remove')
+    }
     done[0].classList.remove('active-done')
     this.setState({disabled: true, visible: 'hidden'})
   }

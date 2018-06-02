@@ -6,7 +6,7 @@ let paramsFavorites = {
     {AttributeName: 'favoriteID', KeyType: 'HASH'} // partition key
   ],
   AttributeDefinitions: [
-    {AttributeName: 'favoriteID', AttributeType: 'N'}
+    {AttributeName: 'favoriteID', AttributeType: 'S'}
   ],
   ProvisionedThroughput: {
     ReadCapacityUnits: 10,

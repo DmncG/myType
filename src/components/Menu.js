@@ -6,8 +6,9 @@ import NavigationMenu from 'material-ui/svg-icons/navigation/menu'
 import Drawer from 'material-ui/Drawer'
 import {Link} from 'react-router-dom'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
+import {connect} from 'react-redux'
 
-export default class Menu extends Component {
+class Menu extends Component {
   constructor (props) {
     super(props)
     this.state = {open: false}
@@ -24,6 +25,7 @@ export default class Menu extends Component {
   }
 
   render () {
+    const {userSession} = this.props
     return (
       <div>
         <NavigationMenu id="menu-burger" color={'#ffffff'} onClick={this.handleToggle} />
@@ -31,7 +33,10 @@ export default class Menu extends Component {
           <NavigationClose id="menu-closeIcon" onClick={this.handleToggle}/>
           <MenuItem><Link to='/' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Home</Link></MenuItem>
           <MenuItem><Link to='/directory' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Directory</Link></MenuItem>
-          <MenuItem><Link to='/favorites' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Favorites</Link></MenuItem>
+          {
+            userSession.username &&
+            <MenuItem><Link to='/favorites' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Favorites</Link></MenuItem>
+          }
           <MenuItem><Link to='/search' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Search</Link></MenuItem>
           <MenuItem><Link to='/signup' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Signup</Link></MenuItem>
         </Drawer>
@@ -39,3 +44,13 @@ export default class Menu extends Component {
     )
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    userSession: state.rootUserReducer.session
+  }
+}
+
+const containerMenu = connect(mapStateToProps)(Menu)
+
+export default containerMenu

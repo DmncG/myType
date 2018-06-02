@@ -29,6 +29,7 @@ class Font extends Component {
     let params = this.props.match.params.family
     let index = null
 
+    console.log('sessionpropsinhandlefave', this.props.userSession)
     let faveIcon = document.getElementsByClassName('font-favorite')
 
     fontItems.forEach((font, i) => {
@@ -40,13 +41,13 @@ class Font extends Component {
     let favoritesList = this.props.favoritesList.map(favorite => {
       return favorite.fam
     })
-
+    let userCred = this.props.userSession.username
     if (favoritesList.indexOf(params) > -1) {
       faveIcon[0].classList.toggle('active')
-      this.props.removeFavorite({id: index, family: params, favoritesList})
+      this.props.removeFavorite({id: index, family: params, favoritesList, userCred})
       this.setState(prevState => ({faveToggle: !prevState.toggle}))
     } else {
-      this.props.putFavorite({id: index, family: params})
+      this.props.putFavorite({id: index, family: params, userCred})
       faveIcon[0].classList.toggle('active')
     }
   }
@@ -186,7 +187,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     favoritesList: state.rootFavoritesReducer.favoritesList,
     fontList: state.rootFontReducer.fontList,
-    font: state.rootFontReducer.font
+    font: state.rootFontReducer.font,
+    userSession: state.rootUserReducer.session
   }
 }
 
