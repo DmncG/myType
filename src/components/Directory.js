@@ -2,12 +2,15 @@ import React, {Component} from 'react'
 import {Navbar, Spinner, PageNotFound} from '../components'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 
 const Directory = (props) => {
   const {fontList, fetching, fetched, erred} = props
+  const handleBack = props.history.goBack
   return (
     <div className='directory-div'>
       <Navbar/>
+      <NavigationArrowBack className="icon-arrowback" onClick={handleBack}/>
       {
         fetching && !fetched
           ? <Spinner/>

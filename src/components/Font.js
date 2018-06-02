@@ -5,6 +5,7 @@ import { fetchFont } from '../reducers/fonts'
 import { putFavorite, removeFavorite } from '../reducers/favorites'
 import ContentAddCircle from 'material-ui/svg-icons/content/add-circle'
 import ActionFavorite from 'material-ui/svg-icons/action/favorite'
+import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import Slider from 'material-ui/Slider'
@@ -22,6 +23,7 @@ class Font extends Component {
     this.handleSlider = this.handleSlider.bind(this)
     this.handleChangeText = this.handleChangeText.bind(this)
     this.handleFave = this.handleFave.bind(this)
+    this.handleBack = this.handleBack.bind(this)
   }
 
   handleFave (e, i, fave) {
@@ -78,6 +80,11 @@ class Font extends Component {
     this.setState({slider})
   }
 
+  handleBack (e) {
+    let goBack = this.props.history.goBack
+    goBack()
+  }
+
   componentDidMount () {
     console.log('props', this.props)
     let params = this.props.match.params.family
@@ -120,6 +127,7 @@ class Font extends Component {
         fontDetails &&
         userSession.username &&
         <ActionFavorite className="font-favorite" onClick={this.handleFave}/>}
+        <NavigationArrowBack className="icon-arrowback" onClick={this.handleBack}/>
         {
           this.props.font.length && fontDetails && fontDetails.length
             ? <div className="font-content">

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Navbar, FavoritesList} from '../components'
 import {connect} from 'react-redux'
 import {putProject, removeProject} from '../reducers/projects'
+import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 
 class Favorites extends Component {
   constructor (props) {
@@ -9,6 +10,12 @@ class Favorites extends Component {
     this.state = {disabled: true, visible: 'hidden'}
     this.handleEdit = this.handleEdit.bind(this)
     this.handleDone = this.handleDone.bind(this)
+    this.handleBack = this.handleBack.bind(this)
+  }
+
+  handleBack (e) {
+    let goBack = this.props.history.goBack
+    goBack()
   }
 
   handleEdit () {
@@ -36,6 +43,7 @@ class Favorites extends Component {
     return (
       <div>
         <Navbar/>
+        <NavigationArrowBack className="icon-arrowback" onClick={this.handleBack}/>
         <div className='favorites-buttons'>
           <button className='favorites-edit' onClick={this.handleEdit}>Edit</button>
           <button className='favorites-done' onClick={this.handleDone} disabled={this.state.disabled}>Done</button>

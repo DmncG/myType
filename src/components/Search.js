@@ -3,12 +3,19 @@ import {Navbar} from '../components'
 import TextField from 'material-ui/TextField'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 
 class Search extends Component {
   constructor (props) {
     super(props)
     this.state = {value: '', suggestions: []}
     this.handleChange = this.handleChange.bind(this)
+    this.handleBack = this.handleBack.bind(this)
+  }
+
+  handleBack (e) {
+    let goBack = this.props.history.goBack
+    goBack()
   }
 
   handleChange (e) {
@@ -22,6 +29,7 @@ class Search extends Component {
     return (
       <div>
         <Navbar/>
+        <NavigationArrowBack className="icon-arrowback" onClick={this.handleBack}/>
         {
           fontList.items &&
           <div className='search-content'>
