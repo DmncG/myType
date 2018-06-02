@@ -112,11 +112,14 @@ class Font extends Component {
 
   render () {
     const fontDetails = this.props.fontList.items
+    const {userSession} = this.props
     return (
       <div>
         <Navbar/>
         {this.props.font.length &&
-        fontDetails && <ActionFavorite className="font-favorite" onClick={this.handleFave}/>}
+        fontDetails &&
+        userSession.username &&
+        <ActionFavorite className="font-favorite" onClick={this.handleFave}/>}
         {
           this.props.font.length && fontDetails && fontDetails.length
             ? <div className="font-content">
