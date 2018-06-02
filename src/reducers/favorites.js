@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {allFavorites, putOneFavorite, deleteOneFavorite} from '../aws-ops'
+import {allFavorites, putOneFavorite, deleteOneFavorite, createUser} from '../aws-ops'
 import { isFetching, isFetched, isErred } from './status'
 
 // INITIAL STATE
@@ -53,8 +53,18 @@ export function fetchFavorites (username) {
         return res
       })
       .then(payload => {
-        let action = getFavorites(payload.Item.f)
-        dispatch(action)
+        if (payload.Item) {
+          let action = getFavorites(payload.Item.f)
+          dispatch(action)
+        } else {
+          createUser(username)
+            .then(res => {
+              console.log('creating user', res)
+              let action2 = getFavorites(res.Item.f)
+              dispatch(getFavorites(action2))
+            })
+            .catch(err => console.error(err))
+        }
       })
       .then(dispatch(isFetched()))
       .catch(err => {

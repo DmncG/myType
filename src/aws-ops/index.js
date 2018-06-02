@@ -7,6 +7,26 @@ AWS.config.update({
   secretAccessKey: 'fakeSecretAccessKey'
 })
 
+export function createUser (username) {
+  return new Promise(resolve => {
+    let docClient = new AWS.DynamoDB.DocumentClient()
+
+    let params = {
+      TableName: 'Favorites',
+      Item: {
+        'favoriteID': username.username,
+        'f': []
+      }
+    }
+    docClient.put(params, (err, data) => {
+      if (err) console.error(err)
+      else {
+        resolve(data)
+      }
+    })
+  })
+}
+
 export function allFavorites (username) {
   return new Promise(resolve => {
     let docClient = new AWS.DynamoDB.DocumentClient()
@@ -75,26 +95,6 @@ export function deleteOneFavorite (favoriteID, favoriteFamily, favoritesList, us
     }
 
     docClient.update(params, (err, data) => {
-      if (err) console.error(err)
-      else {
-        resolve(data)
-      }
-    })
-  })
-}
-
-export function createUser (username) {
-  return new Promise(resolve => {
-    let docClient = new AWS.DynamoDB.DocumentClient()
-
-    let params = {
-      TableName: 'Favorites',
-      Item: {
-        'favoriteID': username,
-        'f': []
-      }
-    }
-    docClient.put(params, (err, data) => {
       if (err) console.error(err)
       else {
         resolve(data)

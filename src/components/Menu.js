@@ -38,7 +38,11 @@ class Menu extends Component {
             <MenuItem><Link to='/favorites' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Favorites</Link></MenuItem>
           }
           <MenuItem><Link to='/search' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Search</Link></MenuItem>
-          <MenuItem><Link to='/signup' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Signup</Link></MenuItem>
+          {
+            userSession.username
+              ? <MenuItem><Link to='/signup' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Log out</Link></MenuItem>
+              : <MenuItem><Link to='/signup' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Login or Signup</Link></MenuItem>
+          }
         </Drawer>
       </div>
     )
