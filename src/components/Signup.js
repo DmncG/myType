@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Navbar} from '../components'
+import {Navbar, MyTheme} from '../components'
 import TextField from 'material-ui/TextField'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
@@ -8,6 +8,7 @@ import {getSession} from '../reducers/user'
 import {removeFaveFromMenu} from '../reducers/favorites'
 import {removeSessionFromState} from '../reducers/user'
 import store from '../store'
+import { ForgotPassword } from 'aws-amplify-react/dist/Auth';
 
 export default class Signup extends Component {
   constructor (props) {
@@ -32,35 +33,26 @@ export default class Signup extends Component {
     if (status === 'signedIn') {
       store.dispatch(getSession())
     }
-    if (status === 'signIn') {
-      store.dispatch(removeFaveFromMenu())
-      store.dispatch(removeSessionFromState())
-    }
+    // if (status === 'signIn') {
+    //   store.dispatch(removeFaveFromMenu())
+    //   store.dispatch(removeSessionFromState())
+    // }
   }
 
   render () {
     const {fontList} = this.props
     const {value, pw} = this.state
-    const federated = {google_client_id: '', facebook_app_id: ''}
-    const AlwaysOn = (props) => {
-      console.log('authData', props.authData)
-      return (
-        <div>
-          <div>I am always here to show current auth state: {props.authState}</div>
-          <button onClick={() => props.onStateChange('signUp')}>Show Sign Up</button>
-        </div>
-      )
-    }
+    const federated = {google_client_id: '706486668672-k5l2evhdi7i0qpdp48dinr12k24lfbh2.apps.googleusercontent.com', facebook_app_id: '1985585061770791'}
 
     return (
       <div>
         <Navbar/>
-        <Authenticator hideDefault={true} onStateChange={this.handleAuthStateChange}>
-          <SignIn/>
+        <Authenticator hideDefault={true} onStateChange={this.handleAuthStateChange} theme={MyTheme}>
+          <SignIn federated={federated}/>
           <SignUp/>
+          <ForgotPassword/>
           <ConfirmSignUp/>
           <Greetings/>
-          <AlwaysOn/>
         </Authenticator>
       </div>
     )

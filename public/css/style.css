@@ -181,8 +181,8 @@ MENU COMPONENT
     fill: #ffeb3b !important; }
 
 .menu-menuItem {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600; }
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 600 !important; }
 
 #menu-closeIcon {
   height: 40px !important;
@@ -191,6 +191,13 @@ MENU COMPONENT
   left: 210px; }
   #menu-closeIcon:hover {
     opacity: .3; }
+
+.menu-logout {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  border: none;
+  background-color: transparent; }
 
 /*
 **************

@@ -1,6 +1,7 @@
 import {createUser, getOneUser} from '../aws-ops'
 import {Auth} from 'aws-amplify'
-import {fetchFavorites} from './favorites'
+import {fetchFavorites, removeFaveFromMenu} from './favorites'
+import history from '../components/history'
 
 // INITIAL STATE
 
@@ -32,6 +33,7 @@ export function newUser (username) {
 
 export function signoutUser () {
   const action = {type: SIGNOUT_USER}
+  return action
 }
 
 export function getUserSession (session) {
@@ -79,6 +81,7 @@ export function getSession () {
         console.log('resingetSesh', res)
         dispatch(getUserSession(res))
         dispatch(fetchFavorites(res))
+        history.push('/')
       })
       .catch(err => console.error(err))
   }
@@ -87,6 +90,20 @@ export function getSession () {
 export function removeSessionFromState () {
   return function thunk (dispatch) {
     dispatch(removeSession())
+    history.push('/')
+  }
+}
+
+export function signOutTheUser () {
+  return function thunk (dispatch) {
+    Auth.signOut()
+      .then(res => {
+        let action = signoutUser()
+        let action2 = removeFaveFromMenu()
+        dispatch(action)
+        dispatch(action2)
+        history.push('/')
+      })
   }
 }
 
@@ -99,7 +116,7 @@ const rootUserReducer = (state = initialState, action) => {
     case NEW_USER:
       return Object.assign({}, state, {email: action.username, signedIn: true})
     case SIGNOUT_USER:
-      return Object.assign({}, state, {signedIn: false})
+      return Object.assign({}, state, {signedIn: false, session: {}, email: ''})
     case GET_USER_SESSION:
       return Object.assign({}, state, {session: action.session, email: action.session.attributes.email})
     case REMOVE_SESSION:

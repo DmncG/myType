@@ -7,6 +7,9 @@ import Drawer from 'material-ui/Drawer'
 import {Link} from 'react-router-dom'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import {connect} from 'react-redux'
+import store from '../store'
+import {removeFaveFromMenu} from '../reducers/favorites'
+import {removeSessionFromState, signOutTheUser} from '../reducers/user'
 
 class Menu extends Component {
   constructor (props) {
@@ -14,6 +17,7 @@ class Menu extends Component {
     this.state = {open: false}
     this.handleToggle = this.handleToggle.bind(this)
     this.handleClose = this.handleClose.bind(this)
+    this.handleSignOut = this.handleSignOut.bind(this)
   }
 
   handleToggle () {
@@ -22,6 +26,12 @@ class Menu extends Component {
 
   handleClose () {
     this.setState(prevState => ({open: false}))
+  }
+
+  handleSignOut (e) {
+    let action = signOutTheUser()
+    store.dispatch(action)
+    this.setState(prevState => ({open: !prevState.open}))
   }
 
   render () {
@@ -40,7 +50,7 @@ class Menu extends Component {
           <MenuItem><Link to='/search' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Search</Link></MenuItem>
           {
             userSession.username
-              ? <MenuItem><Link to='/signup' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Log out</Link></MenuItem>
+              ? <MenuItem onClick={this.handleSignOut} className="menu-menuItem">Log out</MenuItem>
               : <MenuItem><Link to='/signup' className="menu-menuItem" style={{textDecoration: 'none', color: '#000000'}}>Login or Signup</Link></MenuItem>
           }
         </Drawer>
